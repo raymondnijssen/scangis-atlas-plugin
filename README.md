@@ -1,7 +1,7 @@
 # Scangis Atlas Plugin
 
 Het is mogelijk om vanuit Scangis data van deelnemers en hun percelen te exporteren 
-naar een shapefile. (In de map data staat een voorbeeldbestand van zo'n shapefile.)
+naar een shapefile. (In de map [test](https://github.com/raymondnijssen/scangis-atlas-plugin/tree/master/test) staat een voorbeeldbestand van zo'n shapefile.)
 
 Deelnemende organisaties willen in QGIS graag een atlas genereren van deze data, met
 een pagina voor elke deelnemer. Met deze plugin kun je dat doen met ee druk op de knop.
@@ -11,7 +11,8 @@ en afdrukken of opslaan als pdf.
 
 ## Installatie
 
-Download de gewenste (waarschijnlijk de nieuwste) versie uit de release-map op github.
+Download de gewenste (waarschijnlijk de nieuwste) versie uit de map [releases](https://github.com/raymondnijssen/scangis-atlas-plugin/tree/master/releases) op github.
+
 
 Installeer de plugin in QGIS3 (!) met de plugin manager. Er verschijnt nu een knop met
 de tekst "Scangis Atlas" in de toolbar van QGIS.
