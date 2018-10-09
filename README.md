@@ -1,25 +1,30 @@
-# QGIS Minimalist Plugin Skeleton
+# Scangis Atlas Plugin
 
-In various QGIS plugin tutorials you are told to use _Plugin Builder_ tool to create a skeleton for your plugin.
-It is surely helpful as it helps you kickstart your plugin with stuff like UI designer file, auto tests, docs, i18n, scripts and so on.
+Het is mogelijk om vanuit Scangis data van deelnemers en hun percelen te exporteren 
+naar een shapefile. (In de map data staat een voorbeeldbestand van zo'n shapefile.)
 
-This QGIS plugin is the complete opposite of a plugin built with _Plugin Builder_: it is a plugin skeleton cut down
-to the bare minimum that still results in a valid QGIS plugin. It consists of two files only: a text file with metadata and a Python file with a bit of code.
+Deelnemende organisaties willen in QGIS graag een atlas genereren van deze data, met
+een pagina voor elke deelnemer. Met deze plugin kun je dat doen met ee druk op de knop.
 
-## Why?
+Vervolgens kun je de gegenereerde atlas eventueel nog aanpassen aan je eigen behoefte
+en afdrukken of opslaan als pdf.
 
-For educational purposes, it is useful to understand how a very basic plugin could look like.
+## Installatie
 
-For practical reasons, it is sometimes useful to create a single purpose plugin with the least amount of extra bells and whistles,
-so the code that actually does something is not hidden among generated boilerplate code.
+Download de gewenste (waarschijnlijk de nieuwste) versie uit de release-map op github.
 
-## How to use it?
+Installeer de plugin in QGIS3 (!) met de plugin manager. Er verschijnt nu een knop met
+de tekst "Scangis Atlas" in de toolbar van QGIS.
 
-1. Create a new python plugin directory, e.g. ```~/.qgis2/python/plugins/minimal```
-2. Copy ```metadata.txt``` and ```__init__.py``` to that directory
-3. Start QGIS and enable the plugin (menu Plugins > Manager and Install Plugins...)
 
-Now you should see a "Go!" button in your "Plugins" toolbar (make sure it is enabled in menu Settings > Toolbars > Plugins).
+## Gebruik
 
-The next step is to change the metadata (e.g. plugin title and description) in ```metadata.txt``` and
-start adding your own code to ```__init__.py```. Have fun!
+1. Open de Scangis shapefile als kaartlaag (Ctrl + Shift + V) 
+2. Open eventueel een achtergrond-kaartlaag
+3. Maak de scangis kaartlaag actief
+4. Druk op de "Scangis Atlas" knop
+5. Open nu de Layout "Scangis Atlas"
+6. Zet de "atlas preview" aan
+
+Je kunt nu bladeren door de paginas van de atlas.
+
