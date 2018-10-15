@@ -24,6 +24,7 @@ from qgis.core import (QgsProject,
                        QgsLayoutItemLabel,
                        QgsLayoutItemMap,
                        QgsLayoutItemLegend)
+import qgis.utils
 import sip
 
 
@@ -37,12 +38,12 @@ class ScangisAtlas:
         self.virtualLayerName = u'deelnemers_atlas'
         self.layoutName = u'Scangis Atlas'
 
-        print(__file__)
+        #print(__file__)
         self.pluginDir = os.path.dirname(__file__)
-        print(self.pluginDir)
+        #print(self.pluginDir)
         self.templateFile = os.path.join(self.pluginDir, u'data', u'a4.qpt')
         self.scangisStyle = os.path.join(self.pluginDir, u'data', u'pakketten_atlas_alz.qml')
-        print(self.templateFile)
+        #print(self.templateFile)
 
 
     def initGui(self):
@@ -58,10 +59,11 @@ class ScangisAtlas:
 
     def run(self):
         project = QgsProject.instance()
+        
 
         # set qml
         scangisLayer = self.iface.activeLayer()
-        print(scangisLayer.name())
+        # TODO: check fields to find out if this really is scangis layer
         scangisLayer.loadNamedStyle(self.scangisStyle)
 
         # delete existing deelnemers virtual layer
@@ -82,11 +84,8 @@ class ScangisAtlas:
 
         # delete existing atlas layout
         layoutManager = project.layoutManager()
-        print(layoutManager)
-        print(layoutManager.layouts())
         oldLayout = layoutManager.layoutByName(self.layoutName)
         if oldLayout is not None:
-            print('removing: {}'.format(oldLayout))
             layoutManager.removeLayout(oldLayout)
 
         # create new layout
@@ -129,16 +128,21 @@ class ScangisAtlas:
         # set legend filter
         itemId = u'legend1'
         item = self.getLayoutItem(itemId, QgsLayoutItemLegend)
-        print(item)
+        #print(item)
         item.setLegendFilterByMapEnabled(True)
 
-        QMessageBox.information(None, u'Scangis Atlas', u'Atlas finished! :)')
+        #QMessageBox.information(None, u'Scangis Atlas', u'Atlas finished! :)')
+        designer = self.iface.openLayoutDesigner(self.atlasLayout)
+
+        # new in qgis 3.3
+        if qgis.utils.Qgis.QGIS_VERSION_INT >= 30300:
+            designer.setAtlasPreviewEnabled(True)
 
 
     def getLayoutItem(self, itemId, itemType):
         item = self.atlasLayout.itemById(itemId)
         if item is None:
-            print(u'Layout does not contain item: \'{0}\''.format(itemId))
+            #print(u'Layout does not contain item: \'{0}\''.format(itemId))
             return None
         if not type(item) == u'qgis._core.{0}'.format(itemType.__name__):
             item = sip.cast(item, itemType)
