@@ -59,7 +59,7 @@ class ScangisAtlas:
 
     def run(self):
         project = QgsProject.instance()
-        
+
 
         # set qml
         scangisLayer = self.iface.activeLayer()
@@ -95,7 +95,9 @@ class ScangisAtlas:
         fl = QFile(self.templateFile)
         doc = QDomDocument()
         doc.setContent(fl)
-        self.atlasLayout.loadFromTemplate(doc, QgsReadWriteContext())
+        rw_context = QgsReadWriteContext()
+        rw_context.setPathResolver(project.pathResolver())
+        self.atlasLayout.loadFromTemplate(doc, rw_context)
 
         # set name
         self.atlasLayout.setName(self.layoutName)
@@ -115,7 +117,8 @@ class ScangisAtlas:
         # set title
         itemId = u'label_title'
         item = self.getLayoutItem(itemId, QgsLayoutItemLabel)
-        item.setText(u'[% attribute(@atlas_feature, \'DEELN_NAAM\') %]')
+        #item.setText(u'[% attribute(@atlas_feature, \'DEELN_NAAM\') %]')
+        item.setText(u'[% "DEELN_NAAM" %]')
 
         # set source info
         itemId = u'label_source'
