@@ -63,7 +63,7 @@ class ScangisAtlas:
 
         # set qml
         scangisLayer = self.iface.activeLayer()
-        # TODO: check fields to find out if this really is scangis layer
+        #print(scangisLayer.name())
         scangisLayer.loadNamedStyle(self.scangisStyle)
 
         # delete existing deelnemers virtual layer
@@ -84,6 +84,8 @@ class ScangisAtlas:
 
         # delete existing atlas layout
         layoutManager = project.layoutManager()
+        #print(layoutManager)
+        #print(layoutManager.layouts())
         oldLayout = layoutManager.layoutByName(self.layoutName)
         if oldLayout is not None:
             layoutManager.removeLayout(oldLayout)
